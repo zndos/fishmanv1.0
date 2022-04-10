@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Fishmanv10</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <div class="navbar">
+    <%= link_to 'Main', root_path %>
+    <%if user_signed_in? %>
+      <%= link_to 'Profile', profile_path(current_user.profile)%>
+    <%end%>
+    <%= link_to 'Catch', catches_path %>
+    <%= link_to 'About', about_path %>
+    <div class="dropdown">
+      <button class="mainmenubtn">Fishing</button>
+      <div class="dropdown-child">
+        <%= link_to 'Winter', winter_path %>
+        <%= link_to 'Summer', summer_path %>
+      </div>
+    </div>
+    <div class="session-block">
+      <% if user_signed_in? %>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete  %>
+      <%else%>
+        <%= link_to 'Sign up', new_user_registration_path %>
+        <%= link_to 'Log in', new_user_session_path %>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="main-content">
+
+    <div id="logo">
+      <%= image_tag('rybalka2.jpg')%>
+    </div>
+
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+    <p class="anime"> Buy a worm EXPENSIVELY  </p>
+  </div>
+  </body>
+</html>
