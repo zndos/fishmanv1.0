@@ -13,10 +13,12 @@
 
 <br>
 <hr>
-<div>
- <%= turbo_frame_tag "new_catch", src: new_catch_path(@profile) %>
-</div>
 
+<% unless @profile.name.nil? && @profile.lastname.nil? %>
+  <div>
+   <%= turbo_frame_tag "new_catch", src: new_catch_path(@profile) %>
+  </div>
+<% end %>
 
 <div id="catches">
   <% unless @profile.name.nil? && @profile.lastname.nil? %>
