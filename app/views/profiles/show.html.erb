@@ -1,52 +1,45 @@
 <h2>Profile</h2>
 
-<% if @profile.name.nil? && @profile.lastname.nil? %>
+<%= turbo_frame_tag @profile do %>
+  <% unless @profile.name.nil? && @profile.lastname.nil? %>
+    <p>Name: <%= @profile.name %></p>
+    <p>Surname: <%= @profile.lastname %></p>
+  <%end%>
+
   <%= link_to 'Edit profile info', edit_profile_path(@profile) %>
-<%else%>
-  <p>Name: <%= @profile.name %></p>
-  <p>Surname: <%= @profile.lastname %></p>
-  <hr>
-  <h2> Catch </h2>
-  <div>
-    <% if @catch.errors.any? %>
-      <div id="error_explanation">
-        <h3><%= pluralize(@catch.errors.count, "error") %> prohibited this catch from being saved:</h3>
+<% end %>
 
-        <ul>
-          <% @catch.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-
-  <%= simple_form_for @catch, remote: true do |f| %>
+<br>
+<hr>
+<div class="inline-profile-blocks">
+  <%= simple_form_for @profile.catches.new, remote: true do |f| %>
     <%= f.input :name, required: true%>
     <%= f.input :weight, required: true, label: "Weight (kg)"%>
     <%= f.input :place%>
     <%= f.input :date, as: :date, html5: true %>
     <%= f.button :submit%>
   <% end %>
-  <hr>
+</div>
 
-  <table id="myTable">
-    <tr>
-      <th>Name</th>
-      <th>Weight</th>
-      <th>Place</th>
-      <th>Date</th>
-    </tr>
-    <% @profile.catches.each do |catch| %>
+<div class="inline-profile-blocks">
+<div id="catches">
+  <% unless @profile.name.nil? && @profile.lastname.nil? %>
+    <table id="myTable">
       <tr>
-        <td><%=catch.name %></td>
-        <td><%=catch.weight %></td>
-        <td><%=catch.place %></td>
-        <td><%=catch.date %></td>
+        <th>Name</th>
+        <th>Weight</th>
+        <th>Place</th>
+        <th>Date</th>
       </tr>
-    <% end %>
-  </table>
-<%end%>
-
-
-
+      <% @profile.catches.each do |catch| %>
+        <tr>
+          <td><%=catch.name %></td>
+          <td><%=catch.weight %></td>
+          <td><%=catch.place %></td>
+          <td><%=catch.date %></td>
+        </tr>
+      <% end %>
+    </table>
+  <%end%>
+</div>
+</div>

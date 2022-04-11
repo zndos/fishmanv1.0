@@ -18,11 +18,13 @@ class CatchesController < ApplicationController
     @catch.profile = current_user.profile
 
     if @catch.save
-      ActionCable.server.broadcast "fish_index_channel",
-                                   content: [@catch.name, @catch.weight, @catch.place, @catch.date]
+      respond_to do |format|
+        format.turbo_stream
+        format.html {render inline: "location.reload();" }
+      end
     else
       respond_to do |format|
-        format.js {render inline: "location.reload();" }
+        format.js
       end
     end
   end

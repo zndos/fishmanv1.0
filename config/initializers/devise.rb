@@ -21,4 +21,5 @@ Devise.setup do |config|
   config.warden do |manager|
     manager.failure_app = TurboFailureApp
   end
+  config.sign_out_via = :get
 end

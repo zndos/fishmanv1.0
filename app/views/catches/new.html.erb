@@ -1,0 +1,8 @@
+
+<%= simple_form_for @catch, remote: true do |f| %>
+    <%= f.input :name, required: true %>
+    <%= f.input :weight, required: true, label: "Weight (kg)"%>
+    <%= f.input :place%>
+    <%= f.input :date, as: :date, html5: true %>
+    <%= f.button :submit%>
+<% end %>

@@ -1,8 +1,8 @@
 class Catch < ApplicationRecord
   belongs_to :profile
 
-  validates :name, :weight, presence: true
-  validate :datepast
+  # validates :name, :weight, presence: true
+  # validate :datepast
 
 
   def datepast

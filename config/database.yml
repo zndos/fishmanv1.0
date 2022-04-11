@@ -1,35 +1,35 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: db
-  username: postgres
-  password: password
-  pool: 5
-
-development:
-  <<: *default
-  database: fishmanv1_0_development
-
-
-test:
-  <<: *default
-  database: fishmanv1_0_test
-
 #default: &default
 #  adapter: postgresql
 #  encoding: unicode
+#  host: db
+#  username: postgres
+#  password: password
 #  pool: 5
 
 #development:
 #  <<: *default
 #  database: fishmanv1_0_development
 
+
 #test:
 #  <<: *default
 #  database: fishmanv1_0_test
 
-#production:
-#  <<: *default
-#  database: fishmanv1_0_production
-#  username: fishmanv1_0
-#  password: <%#= ENV["FISHMANV1_0_DATABASE_PASSWORD"] %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: fishmanv1_0_development
+
+test:
+  <<: *default
+  database: fishmanv1_0_test
+
+production:
+  <<: *default
+  database: fishmanv1_0_production
+  username: fishmanv1_0
+  password: <%= ENV["FISHMANV1_0_DATABASE_PASSWORD"] %>

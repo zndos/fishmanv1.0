@@ -1,7 +1,9 @@
 <h2> Edit Profile </h2>
 
-<%= simple_form_for @profile do |f| %>
-  <%= f.input :lastname%>
-  <%= f.input :name %>
-  <%= f.button :submit%>
-<%end%>
+<%= turbo_frame_tag @profile do %>
+  <%= simple_form_for @profile do |f| %>
+    <%= f.input :lastname%>
+    <%= f.input :name %>
+    <%= f.button :submit%>
+  <%end%>
+<% end %>
