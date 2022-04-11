@@ -17,15 +17,13 @@ class CatchesController < ApplicationController
     @catch = Catch.create(catch_params)
     @catch.profile = current_user.profile
 
-    if @catch.save
+    if @catch.valid? && @catch.save!
       respond_to do |format|
         format.turbo_stream
         format.html {render inline: "location.reload();" }
       end
     else
-      respond_to do |format|
-        format.js
-      end
+      redirect_to profile_path(current_user.profile)
     end
   end
 

@@ -1,8 +1,10 @@
-
-<%= simple_form_for @catch, remote: true do |f| %>
-    <%= f.input :name, required: true %>
-    <%= f.input :weight, required: true, label: "Weight (kg)"%>
-    <%= f.input :place%>
-    <%= f.input :date, as: :date, html5: true %>
+<%= turbo_frame_tag "new_catch" do %>
+  <%= simple_form_for @catch,
+                      remote: true,
+                      data: { controller: "reset_form", action: "turbo:submit-end->reset_form#reset"} do |f| %>
+    <%= f.input :name %>
+    <%= f.input :weight %>
     <%= f.button :submit%>
+  <% end %>
 <% end %>
+

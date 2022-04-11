@@ -1,5 +1,7 @@
 <h2>Profile</h2>
 
+<%= turbo_stream_from @profile  %>
+
 <%= turbo_frame_tag @profile do %>
   <% unless @profile.name.nil? && @profile.lastname.nil? %>
     <p>Name: <%= @profile.name %></p>
@@ -11,35 +13,15 @@
 
 <br>
 <hr>
-<div class="inline-profile-blocks">
-  <%= simple_form_for @profile.catches.new, remote: true do |f| %>
-    <%= f.input :name, required: true%>
-    <%= f.input :weight, required: true, label: "Weight (kg)"%>
-    <%= f.input :place%>
-    <%= f.input :date, as: :date, html5: true %>
-    <%= f.button :submit%>
-  <% end %>
+<div>
+ <%= turbo_frame_tag "new_catch", src: new_catch_path(@profile) %>
 </div>
 
-<div class="inline-profile-blocks">
+
 <div id="catches">
   <% unless @profile.name.nil? && @profile.lastname.nil? %>
-    <table id="myTable">
-      <tr>
-        <th>Name</th>
-        <th>Weight</th>
-        <th>Place</th>
-        <th>Date</th>
-      </tr>
-      <% @profile.catches.each do |catch| %>
-        <tr>
-          <td><%=catch.name %></td>
-          <td><%=catch.weight %></td>
-          <td><%=catch.place %></td>
-          <td><%=catch.date %></td>
-        </tr>
-      <% end %>
-    </table>
+    <div id="catches">
+      <%= render @profile.catches %>
+    </div>
   <%end%>
-</div>
 </div>

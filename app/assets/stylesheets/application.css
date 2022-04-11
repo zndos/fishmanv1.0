@@ -137,28 +137,19 @@ h5  {
 }
 
 input[type=text], input[type=number], input[type=date], input[type=email], input[type=password], select {
-    width: 100%;
+    display: block;
+    width: 40%;
     padding: 12px 20px;
     margin: 8px 0;
-    display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-/*input[type=number], select {*/
-/*    width: 100%;*/
-/*    padding: 12px 20px;*/
-/*    margin: 8px 0;*/
-/*    display: inline-block;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 4px;*/
-/*    box-sizing: border-box;*/
-/*}*/
-
 /* Style the submit button */
 input[type=submit] {
-    width: 100%;
+    display: block;
+    width: 40%;
     background-color: #04AA6D;
     color: white;
     padding: 14px 20px;
@@ -171,4 +162,13 @@ input[type=submit] {
 /* Add a background color to the submit button on mouse-over */
 input[type=submit]:hover {
     background-color: #45a049;
+}
+
+.left-side-table {
+    margin-left: 45%;
+    margin-bottom: 10%;
+}
+
+.left-50{
+    size: 400px 400px;
 }
