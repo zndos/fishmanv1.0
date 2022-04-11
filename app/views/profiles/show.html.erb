@@ -14,7 +14,7 @@
 <br>
 <hr>
 
-<% unless @profile.name.nil? && @profile.lastname.nil? %>
+<% if !@profile.name.nil?%>
   <div>
    <%= turbo_frame_tag "new_catch", src: new_catch_path(@profile) %>
   </div>
